@@ -1,0 +1,28 @@
+name: Demo Workflow
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  demo-task:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v5.0.0
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::566605793254:role/ci-cd-demo
+          role-session-name: github-actions-session
+
+      - name: Run AWS CLI commands
+        run: |
+          aws sts get-caller-identity
+          aws s3 ls
+
