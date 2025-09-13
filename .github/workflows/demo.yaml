@@ -18,7 +18,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v5.0.0
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::566605793254:role/ci-cd-demo
+          role-to-assume: arn:aws:iam::566605793254:role/github-actions-ci-cd-demo
           role-session-name: github-actions-session
 
       - name: Run AWS CLI commands
